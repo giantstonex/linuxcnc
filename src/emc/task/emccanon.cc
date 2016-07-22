@@ -67,6 +67,12 @@
 
 static CanonConfig_t canon;
 
+/* optional program stop */
+static bool optional_program_stop = ON; //set enabled by default (previous EMC behaviour)
+
+/* optional block delete */
+static bool block_delete = ON; //set enabled by default (previous EMC behaviour)
+
 static int debug_velacc = 0;
 static const double tiny = 1e-7;
 
@@ -2346,23 +2352,23 @@ void PROGRAM_STOP()
 
 void SET_BLOCK_DELETE(bool state)
 {
-    canon.block_delete = state; //state == ON, means we don't interpret lines starting with "/"
+    block_delete = state; //state == ON, means we don't interpret lines starting with "/"
 }
 
 bool GET_BLOCK_DELETE()
 {
-    return canon.block_delete; //state == ON, means we  don't interpret lines starting with "/"
+    return block_delete; //state == ON, means we  don't interpret lines starting with "/"
 }
 
 
 void SET_OPTIONAL_PROGRAM_STOP(bool state)
 {
-    canon.optional_program_stop = state; //state == ON, means we stop
+    optional_program_stop = state; //state == ON, means we stop
 }
 
 bool GET_OPTIONAL_PROGRAM_STOP()
 {
-    return canon.optional_program_stop; //state == ON, means we stop
+    return optional_program_stop; //state == ON, means we stop
 }
 
 void OPTIONAL_PROGRAM_STOP()
@@ -2469,8 +2475,6 @@ void INIT_CANON()
     SET_NAIVECAM_TOLERANCE(0);
     canon.spindleSpeed = 0.0;
 //    canon.preppedTool = 0;
-    canon.optional_program_stop = ON; //set enabled by default (previous EMC behaviour)
-    canon.block_delete = ON; //set enabled by default (previous EMC behaviour)
     canon.cartesian_move = 0;
     canon.angular_move = 0;
     canon.linearFeedRate = 0.0;

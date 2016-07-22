@@ -174,10 +174,6 @@ typedef struct CanonConfig_t {
 */
     double linearFeedRate;
     double angularFeedRate;
-/* optional program stop */
-    bool optional_program_stop;
-/* optional block delete */
-    bool block_delete;
 /* Used to indicate whether the current move is linear, angular, or 
    a combination of both. */
    //AJ says: linear means axes XYZ move (lines or even circles)
